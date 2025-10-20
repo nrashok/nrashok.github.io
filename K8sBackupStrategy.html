@@ -3,7 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EKS Backup Strategy</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>No etcd Access on EKS? Here's Your Application-Level Backup Solution</title>
+    <meta name="title" content="No etcd Access on EKS? Here's Your Application-Level Backup Solution">
+    <meta name="description" content="AWS EKS doesn't provide etcd backups. Learn how to protect your Kubernetes cluster with comprehensive application-level backups including PVs, PVCs, and StorageClasses.">
+    <meta name="keywords" content="AWS EKS, Kubernetes backup, etcd backup, EKS disaster recovery, PersistentVolume backup, Kubernetes storage, EKS backup script, kubectl backup">
+    <meta name="author" content="Ashok QLO">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://medium.com/@hackerway/no-etcd-access-on-eks-heres-your-application-level-backup-solution-146bd1857303">
+    <meta property="og:title" content="No etcd Access on EKS? Here's Your Application-Level Backup Solution">
+    <meta property="og:description" content="AWS EKS doesn't provide etcd backups. Learn how to protect your Kubernetes cluster with comprehensive application-level backups including PVs, PVCs, and StorageClasses.">
+    <meta property="og:image" content="https://miro.medium.com/v2/resize:fit:1200/1*your-image-url-here.png">
+    <meta property="og:site_name" content="Medium - HackerWay">
+    <meta property="article:published_time" content="2025-10-20T00:00:00Z">
+    <meta property="article:author" content="https://medium.com/@hackerway">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="AWS">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:tag" content="Cloud Computing">
+    <meta property="article:tag" content="Disaster Recovery">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://medium.com/@hackerway/no-etcd-access-on-eks-heres-your-application-level-backup-solution-146bd1857303">
+    <meta property="twitter:title" content="No etcd Access on EKS? Here's Your Application-Level Backup Solution">
+    <meta property="twitter:description" content="AWS EKS doesn't provide etcd backups. Learn how to protect your Kubernetes cluster with comprehensive application-level backups including PVs, PVCs, and StorageClasses.">
+    <meta property="twitter:image" content="https://miro.medium.com/v2/resize:fit:1200/1*your-image-url-here.png">
+    <meta name="twitter:creator" content="@0fffh">
+    
+    <!-- Additional SEO Tags -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <link rel="canonical" href="https://medium.com/@hackerway/no-etcd-access-on-eks-heres-your-application-level-backup-solution-146bd1857303">
+    
+    <!-- Schema.org for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "No etcd Access on EKS? Here's Your Application-Level Backup Solution",
+      "description": "AWS EKS doesn't provide etcd backups. Learn how to protect your Kubernetes cluster with comprehensive application-level backups including PVs, PVCs, and StorageClasses.",
+      "image": "https://miro.medium.com/v2/resize:fit:1200/1*your-image-url-here.png",
+      "author": {
+        "@type": "Person",
+        "name": "HackerWay",
+        "url": "https://medium.com/@hackerway"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Medium",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://miro.medium.com/v2/resize:fit:1200/1*PU4bLcyCs_azWtE2g1HeKw.png"
+        }
+      },
+      "datePublished": "2025-10-20",
+      "dateModified": "2025-10-20",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://medium.com/@hackerway/no-etcd-access-on-eks-heres-your-application-level-backup-solution-146bd1857303"
+      },
+      "keywords": "AWS EKS, Kubernetes backup, etcd backup, EKS disaster recovery, PersistentVolume backup, Kubernetes storage"
+    }
+    </script>
+    
     <style>
         * {
             margin: 0;
@@ -27,6 +94,12 @@
             padding: 50px;
             max-width: 1200px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
         }
         
         h1 {
@@ -181,6 +254,7 @@
     </style>
 </head>
 <body>
+    <a href="https://medium.com/@hackerway/no-etcd-access-on-eks-heres-your-application-level-backup-solution-146bd1857303" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block; cursor: pointer;">
     <div class="container">
         <h1>🚨 No etcd Access on EKS?</h1>
         <p class="subtitle">Here's Your Complete Application-Level Backup Solution</p>
@@ -255,8 +329,10 @@
         
         <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white;">
             <h3 style="margin-bottom: 15px; font-size: 1.5em;">✅ Complete Backup Solution</h3>
-            <p style="font-size: 1.1em; opacity: 0.95;">Application-level backups are not optional on EKS—they're mandatory for disaster recovery</p>
+            <p style="font-size: 1.1em; opacity: 0.95; margin-bottom: 15px;">Application-level backups are not optional on EKS—they're mandatory for disaster recovery</p>
+            <p style="font-size: 0.9em; opacity: 0.8; margin-top: 10px;">👆 Click anywhere to read the full article on Medium</p>
         </div>
     </div>
+    </a>
 </body>
 </html>
