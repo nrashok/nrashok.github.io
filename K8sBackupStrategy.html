@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKS Backup Strategy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 1200px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 50px;
+            font-size: 1.2em;
+        }
+        
+        .diagram {
+            display: flex;
+            gap: 30px;
+            align-items: stretch;
+            margin-bottom: 40px;
+        }
+        
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .section {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 25px;
+            border: 2px solid #e2e8f0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+        
+        .resource-list {
+            list-style: none;
+        }
+        
+        .resource-list li {
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            font-size: 0.95em;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .resource-list li::before {
+            content: "✓";
+            color: #48bb78;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .warning-box {
+            background: #fff5f5;
+            border: 2px solid #fc8181;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .warning-box .title {
+            color: #c53030;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+        
+        .warning-box p {
+            color: #742a2a;
+            line-height: 1.6;
+        }
+        
+        .arrow {
+            text-align: center;
+            font-size: 3em;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cluster-level {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+        
+        .cluster-level .resource-list li {
+            border-left-color: #4299e1;
+        }
+        
+        .namespace-level {
+            background: #f0fff4;
+            border-color: #9ae6b4;
+        }
+        
+        .namespace-level .resource-list li {
+            border-left-color: #48bb78;
+        }
+        
+        @media (max-width: 768px) {
+            .diagram {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚨 No etcd Access on EKS?</h1>
+        <p class="subtitle">Here's Your Complete Application-Level Backup Solution</p>
+        
+        <div class="warning-box">
+            <div class="title">
+                <span>⚠️</span>
+                <span>AWS EKS Reality Check</span>
+            </div>
+            <p><strong>AWS does NOT provide etcd backups for EKS clusters.</strong> You cannot restore from cluster-level snapshots. Your application-level backups are your ONLY safety net.</p>
+        </div>
+        
+        <div style="margin: 50px 0;">
+            <h2 style="text-align: center; color: #2d3748; margin-bottom: 30px;">What You Must Backup</h2>
+            
+            <div class="diagram">
+                <div class="column">
+                    <div class="section namespace-level">
+                        <div class="section-title">
+                            <span class="icon">📦</span>
+                            <span>Namespace Resources</span>
+                        </div>
+                        <ul class="resource-list">
+                            <li>Deployments</li>
+                            <li>Services</li>
+                            <li>ConfigMaps</li>
+                            <li>Secrets</li>
+                            <li>Ingresses</li>
+                            <li>PersistentVolumeClaims</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="column">
+                    <div class="section cluster-level">
+                        <div class="section-title">
+                            <span class="icon">💾</span>
+                            <span>Cluster-Level Storage</span>
+                        </div>
+                        <ul class="resource-list">
+                            <li>PersistentVolumes</li>
+                            <li>StorageClasses</li>
+                        </ul>
+                        <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; font-size: 0.9em; color: #4a5568;">
+                            <strong>⚡ Critical:</strong> Often forgotten but essential for complete restoration!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="arrow">→</div>
+                
+                <div class="column">
+                    <div class="section" style="background: #fffaf0; border-color: #fbd38d;">
+                        <div class="section-title">
+                            <span class="icon">💿</span>
+                            <span>Actual Data</span>
+                        </div>
+                        <ul class="resource-list">
+                            <li>EBS Snapshots</li>
+                            <li>Database Dumps</li>
+                            <li>File Backups</li>
+                        </ul>
+                        <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 8px; font-size: 0.9em; color: #4a5568;">
+                            <strong>💡 Remember:</strong> Config backups + Data backups = Complete recovery
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; color: white;">
+            <h3 style="margin-bottom: 15px; font-size: 1.5em;">✅ Complete Backup Solution</h3>
+            <p style="font-size: 1.1em; opacity: 0.95;">Application-level backups are not optional on EKS—they're mandatory for disaster recovery</p>
+        </div>
+    </div>
+</body>
+</html>
