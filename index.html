@@ -346,9 +346,6 @@
                 <a href="https://www.salesforce.com/trailblazer/nrashok" target="_blank" class="social-link" title="Salesforce">
                     <i class="fas fa-cloud"></i>
                 </a>
-                <a href="https://www.credly.com/users/devopsway/" target="_blank" class="social-link" title="Credly">
-                    <i class="fas fa-certificate"></i>
-                </a>
             </div>
         </div>
     </div>
@@ -364,23 +361,6 @@
             star.style.animationDelay = Math.random() * 3 + 's';
             starsContainer.appendChild(star);
         }
-
-        // Calendly integration
-        const script = document.createElement('script');
-        script.src = 'https://assets.calendly.com/assets/external/widget.js';
-        script.async = true;
-        document.body.appendChild(script);
-        
-        script.onload = function() {
-            if (window.Calendly) {
-                window.Calendly.initBadgeWidget({ 
-                    url: 'https://calendly.com/hackerway/30min', 
-                    text: 'Schedule time with me', 
-                    color: '#0095ff', 
-                    textColor: '#ffffff'
-                });
-            }
-        };
     </script>
 
     <!-- Analytics scripts -->
